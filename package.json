@@ -1,9 +1,10 @@
 {
   "name": "strapi-plugin-multi-tenant",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Turn Strapi into a full-fledged backend for your SaaS.",
   "strapi": {
-    "name": "Multi Tenant",
+    "name": "strapi-plugin-multi-tenant",
+    "displayName": "Multi Tenant",
     "description": "Turn Strapi into a full-fledged backend for your SaaS.",
     "kind": "plugin"
   },
