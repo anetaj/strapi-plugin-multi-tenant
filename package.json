@@ -1,6 +1,6 @@
 {
   "name": "strapi-plugin-multi-tenant",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Turn Strapi into a full-fledged backend for your SaaS.",
   "strapi": {
     "name": "strapi-plugin-multi-tenant",
@@ -17,7 +17,7 @@
   },
   "maintainers": [
     {
-    "name": "Aneta Jastrzębska"
+      "name": "Aneta Jastrzębska"
     }
   ],
   "repository": {
