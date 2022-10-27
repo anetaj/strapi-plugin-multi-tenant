@@ -1,0 +1,31 @@
+{
+  "name": "strapi-plugin-multi-tenant",
+  "version": "0.1.0",
+  "description": "Turn Strapi into a full-fledged backend for your SaaS.",
+  "strapi": {
+    "name": "Multi Tenant",
+    "description": "Turn Strapi into a full-fledged backend for your SaaS.",
+    "kind": "plugin"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "4.6.3"
+  },
+  "author": {
+    "name": "Aneta Jastrzębska"
+  },
+  "maintainers": [
+    {
+    "name": "Aneta Jastrzębska"
+    }
+  ],
+  "engines": {
+    "node": ">=14.19.1 <=18.x.x",
+    "npm": ">=6.0.0"
+  },
+  "scripts": {
+    "develop": "tsc -w",
+    "build": "tsc"
+  },
+  "license": "MIT"
+}
