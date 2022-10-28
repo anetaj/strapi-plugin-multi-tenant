@@ -10,6 +10,7 @@
   },
   "dependencies": {},
   "devDependencies": {
+    "@strapi/strapi": "^4.4.5",
     "typescript": "4.6.3"
   },
   "author": {
