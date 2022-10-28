@@ -2,28 +2,27 @@ import { prefixPluginTranslations } from "@strapi/helper-plugin";
 import pluginPkg from "../../package.json";
 import pluginId from "./pluginId";
 import Initializer from "./components/Initializer";
+import PluginIcon from "./components/PluginIcon";
 
 const name = pluginPkg.strapi.name;
 
 export default {
   register(app) {
-    const plugin = {
+    app.registerPlugin({
       id: pluginId,
       initializer: Initializer,
       isReady: false,
       name,
-    };
-
-    app.registerPlugin(plugin);
+    });
   },
 
   bootstrap(app) {},
-  async registerTrads(app) {
-    const { locales } = app;
-
+  async registerTrads({ locales }) {
     const importedTrads = await Promise.all(
       locales.map((locale) => {
-        return import(`./translations/${locale}.json`)
+        return import(
+          /* webpackChunkName: "translation-[request]" */ `./translations/${locale}.json`
+        )
           .then(({ default: data }) => {
             return {
               data: prefixPluginTranslations(data, pluginId),
