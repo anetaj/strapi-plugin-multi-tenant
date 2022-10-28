@@ -7,23 +7,40 @@ module.exports = async (policyContext, config, { strapi }) => {
         : ['userGroup'],
     })
 
-    const loggedUserUserGroup = await strapi
-      .query('plugin::multi-tenant.user-group')
-      .findOne({
-        where: {
-          users: {
-            id: { $in: policyContext.state.user.id },
-          },
-        },
-      })
+    if (resource) {
+      const userGroupIds = await strapi
+        .service('plugin::multi-tenant.user-group')
+        .findAllowed(policyContext.state.user.id)
 
-    const resourceUserGroup = config.attribute
-      ? resource?.[config.attribute]?.userGroup
-      : resource?.userGroup
+      if (policyContext.request.body?.data) {
+        // don't allow updating a relation if user doesn't own it
+        const requestData = policyContext.request.body?.data
+        const requestDataUserGroup = config.attribute
+          ? requestData[config.attribute]?.userGroup
+          : requestData.userGroup
 
-    return (
-      loggedUserUserGroup && resourceUserGroup?.id === loggedUserUserGroup.id
-    )
+        const requestDataUserGroupId =
+          requestDataUserGroup && Number.isInteger(requestDataUserGroup)
+            ? requestDataUserGroup
+            : requestDataUserGroup.id
+
+        if (!userGroupIds.includes(requestDataUserGroupId)) {
+          return false
+        }
+      }
+
+      const resourceUserGroup = config.attribute
+        ? resource[config.attribute]?.userGroup
+        : resource.userGroup
+
+      return (
+        userGroupIds.length &&
+        resourceUserGroup &&
+        userGroupIds.includes(resourceUserGroup?.id)
+      )
+    } else {
+      return false
+    }
   } else {
     return false
   }
