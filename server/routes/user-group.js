@@ -1,30 +1,30 @@
 module.exports = {
-  type: "content-api",
+  type: 'content-api',
   routes: [
     {
-      method: "GET",
+      method: 'GET',
       path: `/user-groups`,
       handler: `user-group.find`,
     },
     {
-      method: "GET",
+      method: 'GET',
       path: `/user-groups/:id`,
       handler: `user-group.findOne`,
     },
     {
-      method: "POST",
+      method: 'POST',
       path: `/user-groups`,
       handler: `user-group.create`,
     },
     {
-      method: "PUT",
+      method: 'PUT',
       path: `/user-groups/:id`,
       handler: `user-group.update`,
     },
     {
-      method: "DELETE",
+      method: 'DELETE',
       path: `/user-groups/:id`,
       handler: `user-group.delete`,
     },
   ],
-};
+}

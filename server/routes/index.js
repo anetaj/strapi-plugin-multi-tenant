@@ -1,4 +1,4 @@
 module.exports = {
-  userGroup: require("./user-group"),
-  organization: require("./organization"),
-};
+  userGroup: require('./user-group'),
+  organization: require('./organization'),
+}

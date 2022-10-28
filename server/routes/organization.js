@@ -1,25 +1,25 @@
 module.exports = {
-  type: "content-api",
+  type: 'content-api',
   routes: [
     {
-      method: "GET",
+      method: 'GET',
       path: `/organizations/:id`,
       handler: `organization.findOne`,
     },
     {
-      method: "POST",
+      method: 'POST',
       path: `/organizations`,
       handler: `organization.create`,
     },
     {
-      method: "PUT",
+      method: 'PUT',
       path: `/organizations/:id`,
       handler: `organization.update`,
     },
     {
-      method: "DELETE",
+      method: 'DELETE',
       path: `/organizations/:id`,
       handler: `organization.delete`,
     },
   ],
-};
+}

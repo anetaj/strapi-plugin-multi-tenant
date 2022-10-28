@@ -1,5 +1,5 @@
-const isSameUserGroup = require("./is-same-user-group");
+const isSameUserGroup = require('./is-same-user-group')
 
 module.exports = {
-  "is-same-user-group": isSameUserGroup,
-};
+  'is-same-user-group': isSameUserGroup,
+}

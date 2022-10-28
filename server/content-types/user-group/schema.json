@@ -1,4 +1,3 @@
-
 {
   "kind": "collectionType",
   "collectionName": "user_groups",
@@ -13,31 +12,31 @@
   },
   "attributes": {
     "name": {
-        "type": "string"
+      "type": "string"
     },
     "users": {
-        "type": "relation",
-        "relation": "oneToMany",
-        "target": "plugin::users-permissions.user"
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user"
     },
     "organization": {
-        "type": "relation",
-        "relation": "manyToOne",
-        "target": "plugin::multi-tenant.organization",
-        "inversedBy": "userGroups",
-        "required": true
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::multi-tenant.organization",
+      "inversedBy": "userGroups",
+      "required": true
     },
     "parent": {
-        "type": "relation",
-        "relation": "manyToOne",
-        "target": "plugin::multi-tenant.user-group",
-        "inversedBy": "children"
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "plugin::multi-tenant.user-group",
+      "inversedBy": "children"
     },
     "children": {
-        "type": "relation",
-        "relation": "oneToMany",
-        "target": "plugin::multi-tenant.user-group",
-        "mappedBy": "parent"
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::multi-tenant.user-group",
+      "mappedBy": "parent"
     }
   }
 }

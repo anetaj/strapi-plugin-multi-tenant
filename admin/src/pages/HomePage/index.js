@@ -4,9 +4,9 @@
  *
  */
 
-import React from 'react';
+import React from 'react'
 // import PropTypes from 'prop-types';
-import pluginId from '../../pluginId';
+import pluginId from '../../pluginId'
 
 const HomePage = () => {
   return (
@@ -14,7 +14,7 @@ const HomePage = () => {
       <h1>{pluginId}&apos;s HomePage</h1>
       <p>Happy coding</p>
     </div>
-  );
-};
+  )
+}
 
-export default HomePage;
+export default HomePage

@@ -1,3 +1,3 @@
-const { createCoreService } = require("@strapi/strapi").factories;
+const { createCoreService } = require('@strapi/strapi').factories
 
-module.exports = createCoreService("plugin::multi-tenant.organization");
+module.exports = createCoreService('plugin::multi-tenant.organization')

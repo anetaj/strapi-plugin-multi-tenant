@@ -1,10 +1,10 @@
-import { prefixPluginTranslations } from "@strapi/helper-plugin";
-import pluginPkg from "../../package.json";
-import pluginId from "./pluginId";
-import Initializer from "./components/Initializer";
-import PluginIcon from "./components/PluginIcon";
+import { prefixPluginTranslations } from '@strapi/helper-plugin'
+import pluginPkg from '../../package.json'
+import pluginId from './pluginId'
+import Initializer from './components/Initializer'
+import PluginIcon from './components/PluginIcon'
 
-const name = pluginPkg.strapi.name;
+const name = pluginPkg.strapi.name
 
 export default {
   register(app) {
@@ -13,7 +13,7 @@ export default {
       initializer: Initializer,
       isReady: false,
       name,
-    });
+    })
   },
 
   bootstrap(app) {},
@@ -27,17 +27,17 @@ export default {
             return {
               data: prefixPluginTranslations(data, pluginId),
               locale,
-            };
+            }
           })
           .catch(() => {
             return {
               data: {},
               locale,
-            };
-          });
+            }
+          })
       })
-    );
+    )
 
-    return Promise.resolve(importedTrads);
+    return Promise.resolve(importedTrads)
   },
-};
+}

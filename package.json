@@ -11,6 +11,8 @@
   "dependencies": {},
   "devDependencies": {
     "@strapi/strapi": "^4.4.5",
+    "lint-staged": "^13.0.3",
+    "prettier": "^2.7.1",
     "typescript": "4.6.3"
   },
   "author": {
@@ -32,6 +34,9 @@
   "scripts": {
     "develop": "tsc -w",
     "build": "tsc"
+  },
+  "lint-staged": {
+    "**/*.(ts|tsx|js|md|json)": "yarn prettier --write"
   },
   "license": "MIT"
 }

@@ -11,14 +11,14 @@
     "comment": ""
   },
   "attributes": {
-        "name": {
-            "type": "string"
-        },
-        "userGroups": {
-            "type": "relation",
-            "relation": "oneToMany",
-            "target": "plugin::multi-tenant.user-group",
-            "mappedBy": "organization"
-        }
+    "name": {
+      "type": "string"
+    },
+    "userGroups": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::multi-tenant.user-group",
+      "mappedBy": "organization"
+    }
   }
 }

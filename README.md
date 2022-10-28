@@ -48,11 +48,11 @@ Let's consider an example. Acme Inc created a SaaS using Strapi as a backend. Th
 ```js
 module.exports = ({ env }) => ({
   // ...
-  "multi-tenant": {
+  'multi-tenant': {
     enabled: true,
   },
   // ...
-});
+})
 ```
 
 Then, you'll need to build your admin panel:
@@ -153,16 +153,16 @@ That's it! Use the same configuration for GET, PUT and DELETE `/workspaces/:id`.
  * workspace router
  */
 
-import { factories } from "@strapi/strapi";
+import { factories } from '@strapi/strapi'
 
 const sameUserGroupPolicyConfig = {
-  name: "plugin::multi-tenant.is-same-user-group",
+  name: 'plugin::multi-tenant.is-same-user-group',
   config: {
-    contentType: "api::workspace.workspace",
+    contentType: 'api::workspace.workspace',
   },
-};
+}
 
-export default factories.createCoreRouter("api::workspace.workspace", {
+export default factories.createCoreRouter('api::workspace.workspace', {
   config: {
     update: {
       policies: [sameUserGroupPolicyConfig],
@@ -174,7 +174,7 @@ export default factories.createCoreRouter("api::workspace.workspace", {
       policies: [sameUserGroupPolicyConfig],
     },
   },
-});
+})
 ```
 
 Note does not contain a relation to a UserGroup, but we still want to secure the resource. There are two ways to solve this problem: denormalize Note also to include a relation to a UserGroup, or configure the policy like so:
@@ -196,17 +196,17 @@ Complete config for Note:
  * note router
  */
 
-import { factories } from "@strapi/strapi";
+import { factories } from '@strapi/strapi'
 
 const sameUserGroupPolicyConfig = {
-  name: "plugin::multi-tenant.is-same-user-group",
+  name: 'plugin::multi-tenant.is-same-user-group',
   config: {
-    contentType: "api::note.note",
-    attribute: "workspace",
+    contentType: 'api::note.note',
+    attribute: 'workspace',
   },
-};
+}
 
-export default factories.createCoreRouter("api::note.note", {
+export default factories.createCoreRouter('api::note.note', {
   config: {
     update: {
       policies: [sameUserGroupPolicyConfig],
@@ -218,7 +218,7 @@ export default factories.createCoreRouter("api::note.note", {
       policies: [sameUserGroupPolicyConfig],
     },
   },
-});
+})
 ```
 
 ### Find Many middleware
