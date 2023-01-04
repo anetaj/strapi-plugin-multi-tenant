@@ -4,7 +4,7 @@ module.exports = {
   beforeCreate(event) {
     const { parent, children } = event.params.data
 
-    if (children?.includes(parent)) {
+    if (children?.includes && children?.includes(parent)) {
       throw new ValidationError('User group cannot be both child and parent')
     }
   },
