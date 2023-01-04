@@ -12,11 +12,11 @@ module.exports = {
     const { parent, children } = event.params.data
     const { id } = event.params.where
 
-    if (children?.includes(parent)) {
+    if (children?.includes && children?.includes(parent)) {
       throw new ValidationError('User group cannot be both child and parent')
     }
 
-    if (children?.includes(id) || parent === id) {
+    if (children?.includes && (children?.includes(id) || parent === id)) {
       throw new ValidationError('User group cannot be its own child or parent')
     }
   },
