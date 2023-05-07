@@ -20,20 +20,22 @@ module.exports = createCoreService(
         })
 
       const organizationUserGroups = loggedUserUserGroup.organization.userGroups
+      var loggedUserUserGroups = [ loggedUserUserGroup.id ]
+ 
+      const findPath = (parentId) => {
 
-      const findPath = (parentId, path = []) => {
-        const updatedPath = [...path, parentId]
-        const foundGroup = organizationUserGroups.find(
+        const foundGroups = organizationUserGroups.filter(
           (group) => group.parent?.id === parentId
         )
-        if (foundGroup) {
-          return findPath(foundGroup.id, updatedPath)
-        } else {
-          return updatedPath
-        }
+        foundGroups.forEach(element => {
+          loggedUserUserGroups = [...loggedUserUserGroups, element.id]
+          findPath(element)
+        });
+
       }
 
-      return findPath(loggedUserUserGroup.id)
+      findPath(loggedUserUserGroup.id)
+      return loggedUserUserGroups
     },
   })
 )
