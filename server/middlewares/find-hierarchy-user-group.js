@@ -1,15 +1,13 @@
-const { createCoreService } = require('@strapi/strapi').factories
+module.exports = (config, { strapi }) => {
+  return async (ctx, next) => {
+    if (ctx.state.user) {
 
-module.exports = createCoreService(
-  'plugin::multi-tenant.user-group',
-  ({ strapi }) => ({
-    async findAllowed(userId) {
       const loggedUserUserGroup = await strapi
         .query('plugin::multi-tenant.user-group')
         .findOne({
           where: {
             users: {
-              id: { $in: [userId] },
+              id: { $in: ctx.state.user.id },
             },
           },
           populate: [
@@ -21,7 +19,7 @@ module.exports = createCoreService(
 
       const organizationUserGroups = loggedUserUserGroup.organization.userGroups
       var loggedUserUserGroups = [ loggedUserUserGroup.id ]
- 
+  
       const findPath = (parentId) => {
 
         const foundGroups = organizationUserGroups.filter(
@@ -35,7 +33,30 @@ module.exports = createCoreService(
       }
 
       findPath(loggedUserUserGroup.id)
-      return loggedUserUserGroups
-    },
-  })
-)
+
+      ctx.query = {
+        ...ctx.query,
+        filters: {
+          ...ctx.query.filters,
+          ...(config.attribute
+            ? { $or: 
+              loggedUserUserGroups.map((data, idx) => (
+              {
+                [config.attribute]: {
+                userGroup: { id: data }
+                },
+              }))
+            }
+            : { $or: 
+              loggedUserUserGroups.map((data, idx) => (
+              { userGroup: { id: data } 
+              }))
+            }
+          )
+        },
+      }
+
+      await next()
+    }
+  }
+}
